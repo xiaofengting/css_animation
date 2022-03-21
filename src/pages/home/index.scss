@@ -1,0 +1,682 @@
+@import '@style/mixin.scss';
+@import './menu.scss';
+
+.home__main--container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/**
+*  背景内层的红绿色
+*/
+.home__main--bg-help {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 0;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 100%;
+  }
+  &::before {
+    background-color: var(--color-green);
+  }
+  &::after {
+    background-color: var(--color-red);
+  }
+}
+
+/**
+*  背景两侧的红绿色
+*/
+.home__main--bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100vmax;
+    height: 100vmax;
+    border-radius: 50%;
+    transform: scale(0);
+  }
+  &::before {
+    @include pc-layout {
+      left: -50vmax;
+      top: calc(50% - 50vmax);
+    }
+    @include sp-layout {
+      top: -50vmax;
+      left: calc(50% - 50vmax);
+    }
+    background-color: var(--color-red);
+  }
+  &::after {
+    @include pc-layout {
+      right: -50vmax;
+      top: calc(50% - 50vmax);
+    }
+    @include sp-layout {
+      bottom: -50vmax;
+      left: calc(50% - 50vmax);
+    }
+    background-color: var(--color-green);
+  }
+}
+
+/**
+*  背景的圆
+*/
+.home__main--bg-circle {
+  position: absolute;
+  top: calc(50% - 45vmax);
+  left: calc(50% - 45vmax);
+  width: 90vmax;
+  height: 90vmax;
+  transform: scale(0);
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+  &::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-black);
+  }
+  &::after {
+    top: 2%;
+    left: 2%;
+    width: 96%;
+    height: 96%;
+    box-sizing: border-box;
+    border: solid 3px var(--color-blue);
+    opacity: 0;
+  }
+}
+
+/**
+*  背景的边框
+*/
+.home__main--frame {
+  position: absolute;
+  opacity: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @include pc-layout {
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+  }
+  @include sp-layout {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    @include pc-layout {
+      height: 5px;
+    }
+    @include sp-layout {
+      height: 2px;
+    }
+    z-index: 3;
+    background: repeating-linear-gradient(90deg, #faf6d8 0, #faf6d8 20px, rgba(0, 0, 0, 0) 20px, rgba(0, 0, 0, 0) 30px);
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
+}
+.home__main--frame-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    height: 200%;
+    @include pc-layout {
+      width: 5px;
+    }
+    @include sp-layout {
+      width: 2px;
+    }
+    z-index: 3;
+    background: repeating-linear-gradient(0deg, #faf6d8 0, #faf6d8 20px, rgba(0, 0, 0, 0) 20px, rgba(0, 0, 0, 0) 30px);
+  }
+  &::before {
+    right: 0;
+    top: 0;
+  }
+  &::after {
+    left: 0;
+  }
+}
+
+.home__main--decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .home__main--star {
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+    }
+    &::before {
+      width: 1px;
+      @include pc-layout {
+        height: calc(100% - 35px);
+      }
+      @include sp-layout {
+        height: calc(100% - 20px);
+      }
+      margin-left: calc(50% - 0.5px);
+      background-color: var(--color-white);
+    }
+    &::after {
+      @include pc-layout {
+        width: 35px;
+        height: 35px;
+      }
+      @include sp-layout {
+        width: 20px;
+        height: 20px;
+      }
+      background-image: url(@assets/home/star.svg);
+      background-size: 100% auto;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+  }
+  @include pc-layout {
+    .home__main--star:nth-child(1) {
+      right: 25%;
+      height: 40%;
+    }
+    .home__main--star:nth-child(2) {
+      left: 25%;
+      height: 30%;
+    }
+    .home__main--star:nth-child(3) {
+      right: 45%;
+      height: 20%;
+    }
+    .home__main--star:nth-child(4) {
+      right: 15%;
+      height: 40%;
+    }
+  }
+  @include sp-layout {
+    .home__main--star:nth-child(1) {
+      right: 15%;
+      height: 40%;
+    }
+    .home__main--star:nth-child(2) {
+      left: 15%;
+      height: 30%;
+    }
+    .home__main--star:nth-child(3) {
+      right: 25%;
+      height: 20%;
+    }
+    .home__main--star:nth-child(4) {
+      right: 5%;
+      height: 40%;
+    }
+  }
+
+  .home__main--moon {
+    position: absolute;
+    top: 0;
+    @include pc-layout {
+      left: 15%;
+    }
+    @include sp-layout {
+      left: 5%;
+    }
+    height: 67%;
+    transform: translateY(-100%);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+    }
+    &::before {
+      width: 1px;
+      @include pc-layout {
+        height: calc(100% - 35px);
+      }
+      @include sp-layout {
+        height: calc(100% - 20px);
+      }
+      margin-left: calc(50% - 0.5px);
+      background-color: var(--color-white);
+    }
+    &::after {
+      @include pc-layout {
+        width: 35px;
+        height: 35px;
+      }
+      @include sp-layout {
+        width: 20px;
+        height: 20px;
+      }
+      background-image: url(@assets/home/moon.svg);
+      background-size: auto 100%;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/**
+*  标题
+*/
+.home__main--title {
+  position: absolute;
+  top: calc(50% - 35vmin);
+  left: calc(50% - 50vmin);
+  width: 100vmin;
+  height: 70vmin;
+  transform: scale(0);
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .home__main--title-main {
+    color: var(--color-red);
+    font-family: 'ComeOn';
+    text-align: center;
+    font-size: 12vmin;
+    transform: rotate(-7deg);
+    mix-blend-mode: difference;
+  }
+}
+
+/**
+*  菜单按钮
+*/
+.home__main--menu-btn {
+  position: absolute;
+  background-color: var(--color-white);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 0;
+
+  @include pc-layout {
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 120px;
+  }
+  @include sp-layout {
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blue);
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.77, 0, 0.17, 1.02) 0s;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: dashed 2px var(--color-black);
+
+    @include pc-layout {
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+    }
+    @include sp-layout {
+      top: 2.5px;
+      left: 2.5px;
+      width: calc(100% - 5px);
+      height: calc(100% - 5px);
+      border-width: 1px;
+    }
+  }
+
+  div {
+    position: absolute;
+    background-color: var(--color-black);
+    border-radius: 15px;
+
+    @include pc-layout {
+      top: calc(50% - 2.5px);
+      left: 30px;
+      width: calc(100% - 60px);
+      height: 5px;
+    }
+    @include sp-layout {
+      top: calc(50% - 1.5px);
+      left: 17.5px;
+      width: calc(100% - 35px);
+      height: 3px;
+    }
+  }
+  @include pc-layout {
+    div:nth-child(1) {
+      transform: translateY(-20px);
+    }
+    div:nth-child(3) {
+      transform: translateY(20px);
+    }
+  }
+  @include sp-layout {
+    div:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    div:nth-child(3) {
+      transform: translateY(10px);
+    }
+  }
+}
+
+.home__main--menu-btn:hover::before {
+  transform: scale(1);
+}
+
+/**
+*  Github
+*/
+.home__main--github {
+  position: absolute;
+  display: block;
+  transform: scale(0);
+  width: 160px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  letter-spacing: 4px;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  user-select: none;
+  font-weight: bold;
+  cursor: pointer;
+
+  .home__main--github-left {
+    display: inline-block;
+    transform: translate(0px);
+  }
+  .home__main--github-right {
+    display: inline-block;
+  }
+
+  @include pc-layout {
+    bottom: 20px;
+    right: 20px;
+  }
+  @include sp-layout {
+    bottom: 10px;
+    left: 10px;
+    display: inline-block;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blue);
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.77, 0, 0.17, 1.02) 0s;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: dashed 2px var(--color-black);
+
+    @include pc-layout {
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+    }
+    @include sp-layout {
+      top: 2.5px;
+      left: 2.5px;
+      width: calc(100% - 5px);
+      height: calc(100% - 5px);
+      border-width: 1px;
+    }
+  }
+}
+
+.home__main--github:hover::before {
+  transform: scale(1);
+}
+
+/**
+*  keyframes
+*/
+@keyframes home__main-show-frame {
+  from {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes home__main-show-decoration {
+  0% {
+    transform: translateY(-100%);
+  }
+  40% {
+    transform: translateY(0%);
+  }
+  60% {
+    transform: translateY(-5%);
+  }
+  80% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(-5%);
+  }
+}
+@keyframes home__main-out-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes home__main-out-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes home__main-out-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes home__main-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes home__main-show-logo {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes home__main-github-right {
+  0% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}
+
+/**
+*  animation
+*/
+.home__main--bg-help {
+  animation: fadein 0.4s ease 0.4s forwards;
+}
+
+.home__main--bg {
+  &::before,
+  &::after {
+    animation: scale-1 0.5s cubic-bezier(0.18, 0.66, 0.05, 0.96) 0s forwards;
+  }
+}
+
+.home__main--bg-circle {
+  animation: scale-1 0.6s cubic-bezier(0.18, 0.66, 0.05, 0.96) 0.2s forwards;
+  &::after {
+    animation: fadein 1s ease 0.8s forwards;
+  }
+}
+
+.home__main--frame {
+  animation: home__main-show-frame 1s cubic-bezier(0.18, 0.66, 0.05, 0.96) 0.4s forwards;
+  &::before {
+    animation: home__main-out-right linear 30s 1s infinite;
+  }
+  &::after {
+    animation: home__main-out-left linear 30s 1s infinite;
+  }
+}
+.home__main--frame-box {
+  &::before {
+    animation: home__main-out-down linear 30s 1s infinite;
+  }
+  &::after {
+    animation: home__main-out-up linear 30s 1s infinite;
+  }
+}
+
+.home__main--title {
+  animation: home__main-show-logo 0.6s ease 1s forwards;
+}
+
+.home__main--menu-btn {
+  animation: scale-rich-1 0.6s ease forwards;
+}
+
+.home__main--decoration {
+  .home__main--star::after {
+    animation: rotateY-reverse-360 6s linear 0s infinite;
+  }
+  .home__main--moon::after {
+    animation: rotateY-reverse-360 6s linear 0s infinite;
+  }
+  .home__main--star:nth-child(1) {
+    animation: home__main-show-decoration 0.6s ease 1.7s forwards;
+  }
+  .home__main--star:nth-child(4) {
+    animation: home__main-show-decoration 0.6s ease 1.8s forwards;
+  }
+  .home__main--star:nth-child(2) {
+    animation: home__main-show-decoration 0.6s ease 1.9s forwards;
+  }
+  .home__main--moon {
+    animation: home__main-show-decoration 0.6s ease 2s forwards;
+  }
+  .home__main--star:nth-child(3) {
+    animation: home__main-show-decoration 0.6s ease 2.1s forwards;
+  }
+}
+
+.home__main--github {
+  animation: home__main-show-logo 0.6s ease 2.2s forwards;
+}
+.home__main--github-right {
+  animation: home__main-github-right 0.5s ease-in-out 0s infinite alternate;
+}

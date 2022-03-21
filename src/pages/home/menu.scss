@@ -1,0 +1,359 @@
+/**
+*  菜单
+*/
+.home__menu--container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-100%);
+}
+
+/**
+*  右侧菜单
+*/
+.home__menu--box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(100%);
+
+  @include pc-layout {
+    width: 350px;
+  }
+  @include sp-layout {
+    width: 100%;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 20px;
+    border: dashed 2px var(--color-black);
+    box-sizing: border-box;
+
+    @include pc-layout {
+      top: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: calc(100% - 40px);
+    }
+    @include sp-layout {
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+    }
+  }
+}
+
+/**
+*  右侧菜单的背景
+*/
+.home__menu--bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-blue);
+  }
+  @include pc-layout {
+    &::before {
+      height: 120px;
+      top: 0;
+    }
+    &::after {
+      height: 40px;
+      bottom: 0;
+    }
+  }
+  @include sp-layout {
+    &::before {
+      height: 80px;
+      top: 0;
+    }
+    &::after {
+      height: 20px;
+      bottom: 0;
+    }
+  }
+}
+
+/**
+*  标题
+*/
+.home__menu--title {
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  color: var(--color-black);
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  @include pc-layout {
+    top: 80px;
+    line-height: 30px;
+    font-size: 30px;
+  }
+  @include sp-layout {
+    top: 50px;
+    height: 20px;
+    font-size: 20px;
+  }
+}
+
+/**
+*  菜单项
+*/
+.home__menu--nav {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  @include pc-layout {
+    top: 120px;
+    height: calc(100% - 200px);
+  }
+  @include sp-layout {
+    top: 80px;
+    height: calc(100% - 130px);
+  }
+
+  a {
+    display: block;
+    background-color: var(--color-white);
+    opacity: 0;
+    transition: all 0.6s ease 0s;
+    border-radius: 30px;
+    letter-spacing: 10px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    line-height: 50px;
+
+    @include pc-layout {
+      width: calc(100% - 80px);
+    }
+    @include sp-layout {
+      width: calc(100% - 90px);
+    }
+
+    img {
+      transform-style: preserve-3d;
+      display: block;
+      animation: rotateY-reverse-360 3s linear 0s infinite;
+      height: 20px;
+      display: inline-block;
+      margin-right: 20px;
+      mix-blend-mode: difference;
+    }
+  }
+  a:hover {
+    background-color: var(--color-blue);
+  }
+
+  .home__menu--nav-css {
+    @include pc-layout {
+      display: none;
+    }
+  }
+}
+
+/**
+*  菜单关闭按钮
+*/
+.home__menu--close {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  transform: translateX(100%);
+  transition: all 0.6s ease 0s;
+  @include pc-layout {
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+  }
+  @include sp-layout {
+    top: -15px;
+    right: -15px;
+    width: 80px;
+    height: 80px;
+  }
+  div {
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 25px;
+    width: calc(100% - 50px);
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 10px;
+  }
+  div:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  div:nth-child(2) {
+    transform: rotate(-45deg);
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    box-sizing: border-box;
+    border: dashed 1px var(--color-black);
+    border-radius: 50%;
+  }
+}
+
+.home__menu--close:hover {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/**
+*  展示区部分
+*/
+.home__menu--space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 350px);
+  height: 100%;
+  display: flex;
+
+  @include sp-layout {
+    display: none;
+  }
+
+  div {
+    width: 25%;
+    height: 100%;
+    background-color: var(--color-white);
+    transform: translateY(-100%);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+  }
+  &::before {
+    background-image: url(@assets/home/menu-bg.svg);
+    background-size: 90px;
+    opacity: 0;
+    z-index: 1;
+  }
+}
+
+/**
+*  keyframes
+*/
+@keyframes home__menu-show-space-bg {
+  0% {
+    transform: translateY(-100%);
+  }
+  20% {
+    transform: translateY(0%);
+  }
+  40% {
+    transform: translateY(-5%);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-2.5%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes home__menu-show-box {
+  0% {
+    transform: translateX(100%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  40% {
+    transform: translateX(5%);
+  }
+  60% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(2.5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/**
+*  animation
+*/
+.home__menu--container.active {
+  animation: slide-bottom 0.05s ease 0s forwards;
+
+  .home__menu--space {
+    div:nth-child(1) {
+      animation: home__menu-show-space-bg 0.6s ease 0.1s forwards;
+    }
+    div:nth-child(2) {
+      animation: home__menu-show-space-bg 0.6s ease 0.2s forwards;
+    }
+    div:nth-child(3) {
+      animation: home__menu-show-space-bg 0.6s ease 0.3s forwards;
+    }
+    div:nth-child(4) {
+      animation: home__menu-show-space-bg 0.6s ease 0.4s forwards;
+    }
+    &::before {
+      animation: fadein 1s ease 1s forwards;
+    }
+  }
+  .home__menu--box {
+    animation: home__menu-show-box 0.6s ease 0s forwards;
+
+    .home__menu--title {
+      animation: fadein 0.5s ease 0.6s forwards;
+    }
+    .home__menu--nav a {
+      animation: fadein 0.7s ease 0.7s forwards;
+    }
+  }
+
+  .home__menu--close {
+    animation: slide-left 0.6s cubic-bezier(0.06, 0.51, 0.01, 1.03) 0.4s forwards;
+  }
+}
