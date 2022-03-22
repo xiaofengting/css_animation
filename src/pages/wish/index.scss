@@ -1,17 +1,55 @@
+
+@mixin portrait-layout {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin landscape-layout {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
 /**
 *  组外层容器
 */
 .wish__container {
   display: flex;
-  overflow-y: auto;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
   flex-direction: column;
+
+  @include portrait-layout {
+    transform-origin: left top;
+    transform: rotate(-90deg) translateX(-100vh);
+    width: 100vh;
+    height: 100vw;
+  }
+
+  @include landscape-layout {
+    width: 100vw;
+    height: 100vh;
+  }
 
   --color-primary: #e91e63;
   --color-primary-hover: #ff508c;
+}
+
+
+/**
+*  抽卡按钮容器
+*/
+.wish__main-btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+}
+
+.wish__main-btn-box.again {
+  transform: scale(0.5);
 }
 
 /**
@@ -85,27 +123,62 @@
 }
 
 /**
-*  卡容器
+*  式神卡片容器
 */
 .wish__card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
-  height: 50vw;
+  display: grid;
+  height: 80%;
+  width: 100%;
+  grid-template-columns: repeat(5, 18%);
+  grid-template-rows: repeat(2, 49%);
+  justify-content: space-evenly;
+  align-content: space-between;
 }
 
+/**
+*  式神卡片
+*/
 .wish__card {
   box-sizing: border-box;
-  width: 18vw;
-  height: 20vw;
-  border: 1px solid #e91e63;
+  position: relative;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
+.wish__card-SP .wish__card-back {
+  background-color: crimson;
+}
+.wish__card-SSR .wish__card-back {
+  background-color: coral;
+}
+.wish__card-SR .wish__card-back {
+  background-color: purple;
+}
+.wish__card-R .wish__card-back {
+  background-color: royalblue;
+}
+
+/**
+*  卡片背面
+*/
+.wish__card-cover, .wish__card-back { 
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
+}
+.wish__card-cover {
+  background-color: blue;
+  transform: rotatey(0deg);
+  background-image: radial-gradient( circle 484px at 49.4% 19%,  rgba(23,156,214,1) 0%, rgba(52,48,111,1) 100.2% );
+  animation: rotatey-180 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) calc(var(--card-index) * 0.1s) forwards;
+}
+.wish__card-back {
+  transform: rotatey(-180deg);
+  animation: rotatey-0 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) calc(var(--card-index) * 0.1s) forwards;
 }
 
 /**
@@ -123,6 +196,22 @@
   100% {
     offset-distance: 100%;
     opacity: 0;
+  }
+}
+@keyframes rotatey-180 {
+  0% {
+    transform: rotatey(0deg);
+  }
+  100% {
+    transform: rotatey(-180deg);
+  }
+}
+@keyframes rotatey-0 {
+  0% {
+    transform: rotatey(-180deg);
+  }
+  100% {
+    transform: rotatey(0deg);
   }
 }
 
