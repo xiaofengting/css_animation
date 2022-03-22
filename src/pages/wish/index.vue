@@ -224,115 +224,115 @@ function hideDetail() {
       :class="{ active: recordVisible }"
       @click="switchRecord"
     >{{ recordVisible ? '关闭' : '记录' }}</div>
-  </div>
-  <div
-    v-show="collectionVisible"
-    class="wish__collection-container"
-    :class="{ active: collectionVisible }"
-  >
-    <nav class="wish__collection-filter">
-      <a @click="chooseCollectionType(0)" :class="{ active: collectionType === 0 }">全部</a>
-      <a @click="chooseCollectionType(1)" :class="{ active: collectionType === 1 }">SP</a>
-      <a @click="chooseCollectionType(2)" :class="{ active: collectionType === 2 }">SSR</a>
-      <a @click="chooseCollectionType(3)" :class="{ active: collectionType === 3 }">SR</a>
-      <a @click="chooseCollectionType(4)" :class="{ active: collectionType === 4 }">R</a>
-    </nav>
-    <nav class="wish__collection-filter wish__collection-filter-own">
-      <a @click="chooseCollectionOwn(0)" :class="{ active: collectionOwn === 0 }">全部</a>
-      <a @click="chooseCollectionOwn(1)" :class="{ active: collectionOwn === 1 }">未拥有</a>
-      <a @click="chooseCollectionOwn(2)" :class="{ active: collectionOwn === 2 }">已拥有</a>
-    </nav>
-    <section class="wish__collection-list" :class="`wish__collection-list-${collectionOwn}`">
-      <template v-if="collectionType === 0 || collectionType === 1">
-        <div
-          v-for="item in SPs"
-          :key="item.id"
-          class="wish__collection-item"
-          :class="{ own: ownMap[item.id] }"
-          @click="showDetail(item, false)"
-        >
-          <img
-            class="wish__collection-img"
-            loading="lazy"
-            :alt="item.name"
-            :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
-          />
-          <div class="wish__collection-name">{{ item.name }}</div>
-        </div>
-      </template>
-      <template v-if="collectionType === 0 || collectionType === 2">
-        <div
-          v-for="item in SSRs"
-          :key="item.id"
-          class="wish__collection-item"
-          :class="{ own: ownMap[item.id] }"
-          @click="showDetail(item)"
-        >
-          <img
-            class="wish__collection-img"
-            loading="lazy"
-            :alt="item.name"
-            :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
-          />
-          <div class="wish__collection-name">{{ item.name }}</div>
-        </div>
-      </template>
-      <template v-if="collectionType === 0 || collectionType === 3">
-        <div
-          v-for="item in SRs"
-          :key="item.id"
-          class="wish__collection-item"
-          :class="{ own: ownMap[item.id] }"
-          @click="showDetail(item)"
-        >
-          <img
-            class="wish__collection-img"
-            loading="lazy"
-            :alt="item.name"
-            :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
-          />
-          <div class="wish__collection-name">{{ item.name }}</div>
-        </div>
-      </template>
-      <template v-if="collectionType === 0 || collectionType === 4">
-        <div
-          v-for="item in Rs"
-          :key="item.id"
-          class="wish__collection-item"
-          :class="{ own: ownMap[item.id] }"
-          @click="showDetail(item)"
-        >
-          <img
-            class="wish__collection-img"
-            loading="lazy"
-            :alt="item.name"
-            :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
-          />
-          <div class="wish__collection-name">{{ item.name }}</div>
-        </div>
-      </template>
-    </section>
-  </div>
-  <div v-show="recordVisible" class="wish__record-container" :class="{ active: recordVisible }">
-    <p>概率说明：2% SSR；1% SP；20% SR；R 77%</p>
-    <p>每次抽到 SSR、SP 时，25% 概率为未拥有（分别计算）</p>
-    <p class="wish__record-clear" @click="clearData">清空记录</p>
-    <p>已抽卡 {{ total }} 次</p>
-    <p v-if="complete > 0">第 {{ complete }} 次抽卡完成全图鉴</p>
-    <p v-else>图鉴 {{ ownLen }} / {{ ALLlen }}</p>
-  </div>
-  <div v-if="detailVisible" class="wish__detail-cover" @click="hideDetail">
-    <img
-      :alt="currentDetail.name"
-      class="wish__detail-img1"
-      :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/name/${currentDetail.id}.png`"
-    />
-    <img
-      decoding="async"
-      class="wish__detail-img2"
-      :src="`https://yys.res.netease.com/pc/zt/20161108171335/data/shishen_big_beforeAwake/${currentDetail.id}.png`"
-      :alt="currentDetail.name"
-    />
+    <div
+      v-show="collectionVisible"
+      class="wish__collection-container"
+      :class="{ active: collectionVisible }"
+    >
+      <nav class="wish__collection-filter">
+        <a @click="chooseCollectionType(0)" :class="{ active: collectionType === 0 }">全部</a>
+        <a @click="chooseCollectionType(1)" :class="{ active: collectionType === 1 }">SP</a>
+        <a @click="chooseCollectionType(2)" :class="{ active: collectionType === 2 }">SSR</a>
+        <a @click="chooseCollectionType(3)" :class="{ active: collectionType === 3 }">SR</a>
+        <a @click="chooseCollectionType(4)" :class="{ active: collectionType === 4 }">R</a>
+      </nav>
+      <nav class="wish__collection-filter wish__collection-filter-own">
+        <a @click="chooseCollectionOwn(0)" :class="{ active: collectionOwn === 0 }">全部</a>
+        <a @click="chooseCollectionOwn(1)" :class="{ active: collectionOwn === 1 }">未拥有</a>
+        <a @click="chooseCollectionOwn(2)" :class="{ active: collectionOwn === 2 }">已拥有</a>
+      </nav>
+      <section class="wish__collection-list" :class="`wish__collection-list-${collectionOwn}`">
+        <template v-if="collectionType === 0 || collectionType === 1">
+          <div
+            v-for="item in SPs"
+            :key="item.id"
+            class="wish__collection-item"
+            :class="{ own: ownMap[item.id] }"
+            @click="showDetail(item, false)"
+          >
+            <img
+              class="wish__collection-img"
+              loading="lazy"
+              :alt="item.name"
+              :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
+            />
+            <div class="wish__collection-name">{{ item.name }}</div>
+          </div>
+        </template>
+        <template v-if="collectionType === 0 || collectionType === 2">
+          <div
+            v-for="item in SSRs"
+            :key="item.id"
+            class="wish__collection-item"
+            :class="{ own: ownMap[item.id] }"
+            @click="showDetail(item)"
+          >
+            <img
+              class="wish__collection-img"
+              loading="lazy"
+              :alt="item.name"
+              :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
+            />
+            <div class="wish__collection-name">{{ item.name }}</div>
+          </div>
+        </template>
+        <template v-if="collectionType === 0 || collectionType === 3">
+          <div
+            v-for="item in SRs"
+            :key="item.id"
+            class="wish__collection-item"
+            :class="{ own: ownMap[item.id] }"
+            @click="showDetail(item)"
+          >
+            <img
+              class="wish__collection-img"
+              loading="lazy"
+              :alt="item.name"
+              :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
+            />
+            <div class="wish__collection-name">{{ item.name }}</div>
+          </div>
+        </template>
+        <template v-if="collectionType === 0 || collectionType === 4">
+          <div
+            v-for="item in Rs"
+            :key="item.id"
+            class="wish__collection-item"
+            :class="{ own: ownMap[item.id] }"
+            @click="showDetail(item)"
+          >
+            <img
+              class="wish__collection-img"
+              loading="lazy"
+              :alt="item.name"
+              :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/shishen/${item.id}.png`"
+            />
+            <div class="wish__collection-name">{{ item.name }}</div>
+          </div>
+        </template>
+      </section>
+    </div>
+    <div v-show="recordVisible" class="wish__record-container" :class="{ active: recordVisible }">
+      <p>概率说明：2% SSR；1% SP；20% SR；R 77%</p>
+      <p>每次抽到 SSR、SP 时，25% 概率为未拥有（分别计算）</p>
+      <p class="wish__record-clear" @click="clearData">清空记录</p>
+      <p>已抽卡 {{ total }} 次</p>
+      <p v-if="complete > 0">第 {{ complete }} 次抽卡完成全图鉴</p>
+      <p v-else>图鉴 {{ ownLen }} / {{ ALLlen }}</p>
+    </div>
+    <div v-if="detailVisible" class="wish__detail-cover" @click="hideDetail">
+      <img
+        :alt="currentDetail.name"
+        class="wish__detail-img1"
+        :src="`https://yys.res.netease.com/pc/gw/20180913151832/data/name/${currentDetail.id}.png`"
+      />
+      <img
+        decoding="async"
+        class="wish__detail-img2"
+        :src="`https://yys.res.netease.com/pc/zt/20161108171335/data/shishen_big_beforeAwake/${currentDetail.id}.png`"
+        :alt="currentDetail.name"
+      />
+    </div>
   </div>
 </template>
 

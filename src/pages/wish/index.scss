@@ -19,8 +19,8 @@
   flex-direction: column;
 
   @include portrait-layout {
-    transform-origin: left top;
-    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: right top;
+    transform: rotate(90deg) translateX(100vh) translateY(calc(100vh - 100vw));
     width: 100vh;
     height: 100vw;
   }
@@ -253,7 +253,6 @@
 .wish__collection-list {
   overflow-y: auto;
   height: calc(100% - 50px);
-  padding-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 105px);
   justify-content: space-evenly;
