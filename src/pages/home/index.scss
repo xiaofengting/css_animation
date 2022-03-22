@@ -10,9 +10,7 @@
   overflow: hidden;
 }
 
-/**
-*  背景内层的红绿色
-*/
+// 背景内层的红绿色
 .home__main--bg-help {
   position: absolute;
   top: 0;
@@ -37,9 +35,7 @@
   }
 }
 
-/**
-*  背景两侧的红绿色
-*/
+// 背景两侧的红绿色
 .home__main--bg {
   position: absolute;
   top: 0;
@@ -81,9 +77,7 @@
   }
 }
 
-/**
-*  背景的圆
-*/
+// 背景的圆
 .home__main--bg-circle {
   position: absolute;
   top: calc(50% - 45vmax);
@@ -117,9 +111,7 @@
   }
 }
 
-/**
-*  背景的边框
-*/
+// 背景的边框
 .home__main--frame {
   position: absolute;
   opacity: 0;
@@ -187,9 +179,7 @@
   }
 }
 
-/**
-*  装饰
-*/
+// 装饰
 .home__main--decoration {
   position: absolute;
   top: 0;
@@ -319,9 +309,7 @@
   }
 }
 
-/**
-*  标题
-*/
+// 标题
 .home__main--title {
   position: absolute;
   top: calc(50% - 35vmin);
@@ -344,9 +332,7 @@
   }
 }
 
-/**
-*  副标题
-*/
+// 副标题
 .home__main--title-bg {
   color: var(--color-white);
   font-size: 10vmin;
@@ -355,9 +341,7 @@
   bottom: 0;
   letter-spacing: 10px;
 }
-/**
-*  菜单按钮
-*/
+// 菜单按钮
 .home__main--menu-btn {
   position: absolute;
   background-color: var(--color-white);
@@ -452,9 +436,7 @@
   transform: scale(1);
 }
 
-/**
-*  Github
-*/
+// Github
 .home__main--github {
   position: absolute;
   display: block;
@@ -528,9 +510,7 @@
   transform: scale(1);
 }
 
-/**
-*  keyframes
-*/
+// keyframes
 @keyframes home__main-show-frame {
   from {
     transform: scale(1.5);
@@ -617,9 +597,7 @@
   }
 }
 
-/**
-*  animation
-*/
+// animation
 .home__main--bg-help {
   animation: fadein 0.4s ease 0.4s forwards;
 }

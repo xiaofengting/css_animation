@@ -1,4 +1,3 @@
-
 @mixin portrait-layout {
   @media (orientation: portrait) {
     @content;
@@ -11,9 +10,7 @@
   }
 }
 
-/**
-*  组外层容器
-*/
+// 组外层容器
 .wish__container {
   display: flex;
   overflow: hidden;
@@ -37,24 +34,22 @@
   --color-primary-hover: #ff508c;
 }
 
-
-/**
-*  抽卡按钮容器
-*/
+// 抽卡按钮容器
 .wish__main-btn-box {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 20%;
 }
-
 .wish__main-btn-box.again {
   transform: scale(0.5);
+
+  .wish__main-btn {
+    padding: 1rem 4rem 1rem 4.5rem;
+  }
 }
 
-/**
-*  抽卡按钮
-*/
+// 抽卡按钮
 .wish__main-btn {
   position: relative;
   padding: 1.5rem 4rem 1.5rem 4.5rem;
@@ -77,9 +72,7 @@
   }
 }
 
-/**
-*  抽卡文字
-*/
+// 抽卡文字
 .wish__main-text {
   position: relative;
   letter-spacing: 10px;
@@ -88,9 +81,7 @@
   user-select: none;
 }
 
-/**
-*  抽卡动画的点
-*/
+// 抽卡动画的点
 .wish__main-dot {
   position: absolute;
   z-index: -1;
@@ -122,9 +113,7 @@
   }
 }
 
-/**
-*  式神卡片容器
-*/
+// 式神卡片容器
 .wish__card-container {
   display: grid;
   height: 80%;
@@ -135,12 +124,11 @@
   align-content: space-between;
 }
 
-/**
-*  式神卡片
-*/
+// 式神卡片
 .wish__card {
   box-sizing: border-box;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.2);
 
   img {
     width: 100%;
@@ -148,23 +136,22 @@
     object-fit: cover;
   }
 }
-.wish__card-SP .wish__card-back {
+.wish__card-SP .wish__card-back.wish__card-new {
   background-color: crimson;
 }
-.wish__card-SSR .wish__card-back {
+.wish__card-SSR .wish__card-back.wish__card-new {
   background-color: coral;
 }
-.wish__card-SR .wish__card-back {
+.wish__card-SR .wish__card-back.wish__card-new {
   background-color: purple;
 }
-.wish__card-R .wish__card-back {
+.wish__card-R .wish__card-back.wish__card-new {
   background-color: royalblue;
 }
 
-/**
-*  卡片背面
-*/
-.wish__card-cover, .wish__card-back { 
+// 卡片背面
+.wish__card-cover,
+.wish__card-back {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -173,7 +160,7 @@
 .wish__card-cover {
   background-color: blue;
   transform: rotatey(0deg);
-  background-image: radial-gradient( circle 484px at 49.4% 19%,  rgba(23,156,214,1) 0%, rgba(52,48,111,1) 100.2% );
+  background-image: radial-gradient(circle 484px at 49.4% 19%, rgba(23, 156, 214, 1) 0%, rgba(52, 48, 111, 1) 100.2%);
   animation: rotatey-180 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) calc(var(--card-index) * 0.1s) forwards;
 }
 .wish__card-back {
@@ -181,9 +168,224 @@
   animation: rotatey-0 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) calc(var(--card-index) * 0.1s) forwards;
 }
 
-/**
-*  keyframes
-*/
+// 图鉴 、 记录按钮
+.wish__collection-btn,
+.wish__record-btn {
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  background-color: #faf7d9;
+  color: #283c5f;
+  line-height: 85px;
+  font-size: 20px;
+  z-index: 100;
+}
+
+.wish__collection-btn:hover,
+.wish__record-btn:hover {
+  background-color: #4aa9a4;
+}
+.wish__collection-btn.active,
+.wish__record-btn.active {
+  background-color: #64c3c4;
+}
+.wish__collection-btn {
+  left: 0;
+  border-radius: 0 60px 0 0;
+  text-align: left;
+}
+.wish__record-btn {
+  right: 0;
+  border-radius: 60px 0 0 0;
+  text-align: right;
+}
+
+// 收藏面板
+.wish__collection-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// 收藏面板 - 选择
+.wish__collection-filter {
+  height: 50px;
+  line-height: 50px;
+  display: inline-block;
+
+  a {
+    padding: 0 20px;
+    cursor: pointer;
+    position: relative;
+  }
+  a.active {
+    color: #c2a060;
+  }
+  a::after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: '';
+    display: block;
+    width: 1px;
+    height: 14px;
+    background: #c2a060;
+  }
+}
+
+// 收藏面板 - 选择
+.wish__collection-filter-own {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  a::after {
+    left: 0;
+  }
+}
+
+// 式神列表
+.wish__collection-list {
+  overflow-y: auto;
+  height: calc(100% - 50px);
+  padding-bottom: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 105px);
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.wish__collection-list-0 {
+  .wish__collection-item {
+    display: block;
+  }
+}
+.wish__collection-list-1 {
+  .wish__collection-item.own {
+    display: none;
+  }
+}
+.wish__collection-list-2 {
+  .wish__collection-item {
+    display: none;
+  }
+  .wish__collection-item.own {
+    display: block;
+  }
+}
+
+// 收藏面板 - 滚动条
+.wish__collection-list::-webkit-scrollbar {
+  width: 10px;
+  height: 1px;
+}
+// 滚动条里面小方块
+.wish__collection-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+// 滚动条里面轨道
+.wish__collection-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #ededed;
+  border-radius: 10px;
+}
+
+// 单个式神
+.wish__collection-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 50px;
+  }
+
+  &.own .wish__collection-img {
+    filter: grayscale(0);
+  }
+}
+.wish__collection-img {
+  width: 100px;
+  height: 100px;
+  filter: grayscale(100%);
+}
+.wish__collection-name {
+  text-align: center;
+  font-size: 14px;
+  margin: 5px auto 6px;
+}
+
+.wish__collection-bottom {
+  height: 50px;
+}
+
+// 记录面板
+.wish__record-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+// 清空按钮
+.wish__record-clear {
+  background: #c2a060;
+  color: #fff;
+  height: 30px;
+  width: 96px;
+  line-height: 30px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+}
+
+// 式神详情
+.wish__detail-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .wish__detail-img1 {
+    margin-left: -100px;
+  }
+  .wish__detail-img2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+// keyframes
 @keyframes wish__main-dot {
   0% {
     offset-distance: 0%;
@@ -215,9 +417,7 @@
   }
 }
 
-/**
-*  animation
-*/
+// animation
 .wish__main-btn.wishing .wish__main-dot:nth-child(4n + 1)::before {
   animation: wish__main-dot 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }

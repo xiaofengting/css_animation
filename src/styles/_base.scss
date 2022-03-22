@@ -12,14 +12,6 @@ body,
   overflow: hidden;
 }
 
-@media screen and (max-height: 500px) {
-  html,
-  body,
-  #app {
-    overflow-y: auto;
-  }
-}
-
 img {
   vertical-align: middle;
 }
