@@ -29,6 +29,7 @@ const closeMenu = () => {
   </div>
   <div class="home__main--title">
     <div class="home__main--title-main">小枫亭的栖息地</div>
+    <div class="home__main--title-bg">o(&gt;▽&lt;)ツ</div>
   </div>
   <a
     class="home__main--github"
@@ -54,10 +55,10 @@ const closeMenu = () => {
       <div class="home__menu--bg" />
       <div class="home__menu--title">要看什么呢</div>
       <div class="home__menu--nav">
-        <router-link to="/">
-          <img src="@assets/home/star.svg" />自我介绍
+        <router-link to="/wish">
+          <img src="@assets/home/star.svg" />抽卡模拟器
         </router-link>
-        <router-link to="/">
+        <router-link to="/palette">
           <img src="@assets/home/moon.svg" />调色板
         </router-link>
         <a href="https://xiaofengting.github.io/study/" target="_blank">

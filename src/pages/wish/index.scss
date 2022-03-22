@@ -1,0 +1,147 @@
+/**
+*  组外层容器
+*/
+.wish__container {
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+
+  --color-primary: #e91e63;
+  --color-primary-hover: #ff508c;
+}
+
+/**
+*  抽卡按钮
+*/
+.wish__main-btn {
+  position: relative;
+  padding: 1.5rem 4rem 1.5rem 4.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: 0;
+  font-size: 16px;
+  border-radius: 0.4rem;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 250ms, box-shadow 250ms;
+
+  &:hover {
+    background: var(--color-primary-hover);
+    box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/**
+*  抽卡文字
+*/
+.wish__main-text {
+  position: relative;
+  letter-spacing: 10px;
+  font-size: 30px;
+  z-index: 2;
+  user-select: none;
+}
+
+/**
+*  抽卡动画的点
+*/
+.wish__main-dot {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  width: 4px;
+  height: 4px;
+  transform-origin: 5px 5px;
+  pointer-events: none;
+
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) rotate(calc(var(--dot-index) * 6deg));
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    offset-path: path(
+      'M0 1c7.1 0 10.7 2 14.3 4s7.1 4 14.3 4 10.7-2 14.3-4 7.2-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4 10.7-2 14.3-4 7.1-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4 10.7-2 14.3-4 7.1-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4'
+    );
+    offset-distance: 0;
+    pointer-events: none;
+  }
+}
+
+/**
+*  卡容器
+*/
+.wish__card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  height: 50vw;
+}
+
+.wish__card {
+  box-sizing: border-box;
+  width: 18vw;
+  height: 20vw;
+  border: 1px solid #e91e63;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/**
+*  keyframes
+*/
+@keyframes wish__main-dot {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  90% {
+    offset-distance: 60%;
+    opacity: 0.5;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/**
+*  animation
+*/
+.wish__main-btn.wishing .wish__main-dot:nth-child(4n + 1)::before {
+  animation: wish__main-dot 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.wish__main-btn.wishing .wish__main-dot:nth-child(4n + 2)::before {
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  animation: wish__main-dot 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s;
+}
+.wish__main-btn.wishing .wish__main-dot:nth-child(4n + 3)::before {
+  animation: wish__main-dot 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.2s;
+}
+.wish__main-btn.wishing .wish__main-dot:nth-child(4n)::before {
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  animation: wish__main-dot 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+}
