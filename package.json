@@ -1,10 +1,10 @@
 {
-  "name": "vite-project",
+  "name": "try_homepage",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build --base=/css_animation/",
+    "build": "vue-tsc --noEmit && vite build --base=/try_homepage/",
     "preview": "vite preview"
   },
   "dependencies": {
